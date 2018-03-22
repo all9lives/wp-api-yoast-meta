@@ -3,9 +3,9 @@
 /**
  * Plugin Name: WP REST API Yoast SEO
  * Description: Adds Yoast fields to page and post metadata to WP REST API responses
- * Author: Charlie Francis, Tedy Warsitha
+ * Author: Charlie Francis, Tedy Warsitha, Jeremy Brennan
  * Author URI: https://github.com/ChazUK
- * Version: 1.1.0
+ * Version: 1.2.0
  * Plugin URI: https://github.com/ChazUK/wp-api-yoast-seo
  */
 class WPAPIYoastMeta {
@@ -90,6 +90,10 @@ class WPAPIYoastMeta {
 
 		return $this->wp_api_encode_yoast( $data->ID, null, null );
 	}
+	
+	function nullify_empty($val) {
+		return empty($val) ? null : $val;
+	}
 
 	function wp_api_encode_yoast( $post, $field_name, $request ) {
 		$yoastMeta = array(
@@ -105,10 +109,10 @@ class WPAPIYoastMeta {
 			'yoast_wpseo_redirect'              => get_post_meta( $post['id'], '_yoast_wpseo_redirect', true ),
 			'yoast_wpseo_opengraph-title'       => get_post_meta( $post['id'], '_yoast_wpseo_opengraph-title', true ),
 			'yoast_wpseo_opengraph-description' => get_post_meta( $post['id'], '_yoast_wpseo_opengraph-description', true ),
-			'yoast_wpseo_opengraph-image'       => get_post_meta( $post['id'], '_yoast_wpseo_opengraph-image', true ),
+			'yoast_wpseo_opengraph-image'       => nullify_empty( get_post_meta( $post['id'], '_yoast_wpseo_opengraph-image', true ) ),
 			'yoast_wpseo_twitter-title'         => get_post_meta( $post['id'], '_yoast_wpseo_twitter-title', true ),
 			'yoast_wpseo_twitter-description'   => get_post_meta( $post['id'], '_yoast_wpseo_twitter-description', true ),
-			'yoast_wpseo_twitter-image'         => get_post_meta( $post['id'], '_yoast_wpseo_twitter-image', true )
+			'yoast_wpseo_twitter-image'         => nullify_empty( get_post_meta( $post['id'], '_yoast_wpseo_twitter-image', true) ),
 		);
 
 		return (array) $yoastMeta;
