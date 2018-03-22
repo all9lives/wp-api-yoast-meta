@@ -6,6 +6,6 @@
   "description": "Returns Yoast post or page metadata in a normal post or page request. Stores the metadata in the yoast_meta field of the returned data.",
   "keywords": ["plugin","wordpress","wp-rest-api","wp-api-yoast-meta","yoast"],
   "require": {
-    "composer/installers": "^1.4.0"
+    "composer/installers": "^1.0.6"
   }
 }
