@@ -109,10 +109,10 @@ class WPAPIYoastMeta {
 			'yoast_wpseo_redirect'              => get_post_meta( $post['id'], '_yoast_wpseo_redirect', true ),
 			'yoast_wpseo_opengraph-title'       => get_post_meta( $post['id'], '_yoast_wpseo_opengraph-title', true ),
 			'yoast_wpseo_opengraph-description' => get_post_meta( $post['id'], '_yoast_wpseo_opengraph-description', true ),
-			'yoast_wpseo_opengraph-image'       => nullify_empty( get_post_meta( $post['id'], '_yoast_wpseo_opengraph-image', true ) ),
+			'yoast_wpseo_opengraph-image'       => $this->nullify_empty( get_post_meta( $post['id'], '_yoast_wpseo_opengraph-image', true ) ),
 			'yoast_wpseo_twitter-title'         => get_post_meta( $post['id'], '_yoast_wpseo_twitter-title', true ),
 			'yoast_wpseo_twitter-description'   => get_post_meta( $post['id'], '_yoast_wpseo_twitter-description', true ),
-			'yoast_wpseo_twitter-image'         => nullify_empty( get_post_meta( $post['id'], '_yoast_wpseo_twitter-image', true) ),
+			'yoast_wpseo_twitter-image'         => $this->nullify_empty( get_post_meta( $post['id'], '_yoast_wpseo_twitter-image', true) ),
 		);
 
 		return (array) $yoastMeta;
